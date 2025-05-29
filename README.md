@@ -1,6 +1,7 @@
 # Bulk Keccak256
 
-This Next.js app hashes each line of input text individually using SHA3-256 from Node's crypto library and returns the first 4 bytes (8 hex characters).
+This Next.js app hashes each line of input text individually using `keccak256`
+from the Ethers library and returns the first 4 bytes (8 hex characters, including the `0x` prefix).
 
 ## Usage
 
@@ -14,4 +15,4 @@ This Next.js app hashes each line of input text individually using SHA3-256 from
    ```
 3. Open `http://localhost:3000` in your browser and paste lines of text to hash.
 
-**Note:** The hashing uses `sha3-256` from Node's crypto, which may not be fully compatible with Ethereum's Keccak-256.
+**Note:** Hashing uses Ethereum's Keccak-256 implementation via the Ethers library.
