@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import crypto from 'crypto';
+import { keccak256, toUtf8Bytes } from 'ethers';
 
 type Data = { hashes: string[] };
 
@@ -15,8 +15,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
   }
   const lines = text.split(/\r?\n/).filter(Boolean);
   const hashes = lines.map(line => {
-    const digest = crypto.createHash('sha3-256').update(line).digest('hex');
-    return digest.slice(0, 8);
+    const selector = keccak256(toUtf8Bytes(line)).slice(0, 10);
+    return selector;
   });
   res.status(200).json({ hashes });
 }
